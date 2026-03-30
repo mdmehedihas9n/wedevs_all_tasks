@@ -40,16 +40,42 @@ test.describe('Update Profile', () => {
         //await page.locator('#address').fill('m12345678');
 
         // address  name
-        await page.locator("//div[@class='w-full']//input[1]").fill('Dhaka Bangladesh');
-        // Option select  
-        //await page.locator('text=Dhaka Bangladesh').click();
+        await page.locator("//div[normalize-space(text())='Edit Address Manually']").click();
         console.log('✅ 8 -Dhaka ');
+
+        await page.locator("(//label[contains(.,'Address *')]/following::input)[1]").fill('Shewrapara Mirpur, Dhaka');
+        //await page.locator("//input[@placeholder='Apartment, suite, etc']").fill('House 397, Iqbal road, west Shewrapara');
+        console.log('✅ 9 -Dhaka ');
         await page.waitForTimeout(2000);
 
-        // ===== Reload page to confirm =====
-        await page.reload({ waitUntil: 'networkidle' });
-        console.log('✅ 11 - Page reloaded');
+        await page.locator("//input[@placeholder='Postal Code']").fill('1216');
         await page.waitForTimeout(2000);
+        console.log('✅ 10 -zip code ');
+
+        await page.locator('#phone').fill('01616060242');
+        await page.waitForTimeout(2000);
+        console.log('✅ 11 -mobile ');
+
+        await page.locator('#address-label').fill('huda');
+        await page.waitForTimeout(2000);
+        console.log('✅ 11 -level ');
+
+        await page.locator('#isDefaultAddress').click();
+        console.log('✅ 11 -level ');
+
+
+        // City  name
+        //await page.locator("///div[@id='react-select-8-placeholder']/following-sibling::div[1]").click();
+        // Option select  
+        //await page.locator('text=Dhaka').click();
+        console.log('✅ 11 -Country ');
+        await page.waitForTimeout(5000);
+
+        await page.locator("//button[text()='Cancel']/following-sibling::button").click();
+        console.log('✅ 12 -save ');
+
+        await page.waitForTimeout(5000);
+        await page.keyboard.press('Escape');
     });
 
 });
